@@ -1,0 +1,29 @@
+/* src/components/scroll.css */
+
+.footer {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    background-color: #007bff; /* Background color */
+    color: white; /* Text color */
+    padding: 1rem; /* Add padding */
+    position: fixed; /* Fix position to the bottom */
+    bottom: 0; /* Align to the bottom of the viewport */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    z-index: 1000; /* Ensure it is above other content */
+  }
+  
+  .footer-button {
+    flex: 1; /* Allows buttons to take equal space */
+    background-color: transparent; /* Transparent background */
+    color: white; /* Text color */
+    border: none; /* No border */
+    padding: 0.5rem; /* Padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-align: center; /* Center text within buttons */
+  }
+  
+  .footer-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Change background on hover */
+  }
+  

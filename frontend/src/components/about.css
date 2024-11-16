@@ -1,0 +1,113 @@
+/* Page-wide background image */
+.custom-bg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Use min-height for better responsiveness */
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Contact container styling */
+.about_container {
+    background-color: rgba(11, 84, 153, 0.85); /* Semi-transparent blue background */
+    border-radius: 10px;
+    padding: 30px; /* Increase padding for better spacing */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly increased shadow for depth */
+    max-width: 800px; /* Set a max width for better alignment on large screens */
+    width: 90%; /* Adjust the width to fit well on the page */
+    color: #ffffff; /* Text color contrast */
+    margin: 20px auto;
+    margin-top: 5%; /* Reduced top margin for better positioning */
+}
+
+/* Heading styling */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px; /* Increased margin for better spacing */
+    color: #ffffff; /* Make sure the heading stands out */
+}
+
+/* Paragraph and subheading styling */
+p {
+    font-size: 1.15rem; /* Slightly smaller font size for better readability */
+    margin-bottom: 15px; /* Increased bottom margin for spacing */
+    color: #e0e0eb; /* Light text color for readability */
+}
+
+/* List styling */
+ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+    margin: 20px 0; /* Added margin for spacing */
+}
+
+ul li {
+    font-size: 1rem;
+    margin-bottom: 10px; /* Increased margin for better spacing */
+    color: #ffffff;
+}
+
+/* Underlined text */
+u {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .contact_container {
+        width: 95%; /* Adjust container width for smaller screens */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 2rem; /* Smaller font size for mobile */
+    }
+
+    p, ul li {
+        font-size: 1rem; /* Ensure consistency for mobile */
+    }
+}
+
+/* Chatbot icon styling */
+.chatbot-icon {
+    position: fixed; /* Fixed position to stay in the same place on scroll */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.chatbot-icon img {
+    width: 50px; /* Adjust size of the icon */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Change cursor on hover */
+    transition: transform 0.2s; /* Add transition for hover effect */
+}
+
+.chatbot-icon img:hover {
+    transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
+
+/* FAQ button styling */
+.faq-button {
+    position: fixed; /* Fixed position to stay in the same place on scroll */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    background-color: #008CBA; /* Background color of the button */
+    color: #ffffff; /* Text color */
+    border-radius: 50%; /* Circular button */
+    padding: 15px; /* Padding for the button */
+    text-align: center; /* Center the icon */
+    font-size: 24px; /* Size of the icon */
+    z-index: 1000; /* Ensure it appears above other elements */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.faq-button:hover {
+    background-color: #005f7f; /* Darker shade on hover */
+}

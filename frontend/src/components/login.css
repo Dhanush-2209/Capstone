@@ -1,0 +1,129 @@
+/* src/components/login.css */
+.login-page {
+    display: flex;
+    justify-content: space-between; /* Aligns the login and monitoring containers */
+}
+/* login.css */
+.user-type-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .user-type-button {
+    padding: 10px 20px;
+    background-color: #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .user-type-button.active {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+.login-container,
+.monitoring-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the left */
+    padding: 2rem;
+    max-width: 400px;
+    margin-top: 2rem; /* Move the containers down from the top */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container {
+    margin-left: 8rem; /* Add some margin from the left side */
+    margin-top: 200px;
+}
+
+.monitoring-container {
+    margin-right: 15rem; /* Add some margin from the right side */
+    margin-top:  200px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 1rem;
+}
+
+/* User Type Buttons Styles */
+.user-type-container {
+    display: flex; /* Align buttons in a row */
+    justify-content: center; /* Center the buttons */
+    margin-bottom: 1rem; /* Space below the buttons */
+    position: relative; /* Position for the indicator */
+}
+
+.user-type-button {
+    flex: 1; /* Allow buttons to take equal space */
+    margin: 0 0.5rem; /* Space between buttons */
+    padding: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center; /* Center text in buttons */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background and scaling */
+}
+
+.user-type-button.active {
+    background-color: #0056b3; /* Active button color */
+}
+
+.user-type-button:hover {
+    background-color: #0056b3; /* Hover effect */
+}
+
+/* Indicator for active user type */
+.indicator {
+    position: absolute;
+    bottom: -10px; /* Adjust the position below the buttons */
+    left: 0;
+    width: 50%; /* Width of the indicator matches one button */
+    height: 4px; /* Height of the indicator */
+    background-color: #0056b3; /* Color of the indicator */
+    transition: left 0.3s ease; /* Smooth transition for moving indicator */
+}
+
+/* Move the indicator based on the active button */
+.user-type-container .indicator.USER {
+    left: 0; /* Indicator under USER */
+}
+
+.user-type-container .indicator.ADMIN {
+    left: 50%; /* Indicator under ADMIN */
+}

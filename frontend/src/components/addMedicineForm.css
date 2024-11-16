@@ -1,0 +1,77 @@
+.add-medicine-form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-medicine-form h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.add-medicine-form input, 
+.add-medicine-form select, 
+.add-medicine-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-medicine-form button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-medicine-form button:hover {
+    background-color: #2980b9;
+}
+
+.success-message {
+    color: #2ecc71;
+    margin: 10px 0;
+}
+
+.current-medicine {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.recent-medicines {
+    margin-top: 20px;
+}
+
+.recent-medicines table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-medicines th, .recent-medicines td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.recent-medicines th {
+    background-color: #f2f2f2;
+}
+.time-inputs {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.time-inputs input {
+    width: 60%; /* Adjust width as needed */
+    margin-right: 10px; /* Space between inputs */
+}
+
+.time-inputs select {
+    width: 35%; /* Adjust width for AM/PM selector */
+}

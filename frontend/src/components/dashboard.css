@@ -1,0 +1,355 @@
+.dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ececec;
+    padding-bottom: 15px;
+}
+
+.user-info {
+    display: flex;
+    gap: 20px;
+}
+
+.user-name-label,
+.user-id-label {
+    font-weight: bold;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Left half (Upload Area) */
+.left-half {
+    width: 48%;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.left-half:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.left-half h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #3a3d98;
+}
+
+.upload-area {
+    border: 2px dashed #999;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    background: #f1f4ff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.upload-area:hover {
+    background-color: #e0e7ff;
+    transform: scale(1.05);
+}
+
+.upload-button {
+    color: #444;
+    font-size: 1em;
+}
+
+/* Right half (Manual Entry) */
+.right-half {
+    width: 48%;
+    padding: 30px;
+    background: linear-gradient(135deg, #f0f4f8, #dae3ea);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.right-half:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.manual-entry-container {
+    padding: 15px;
+    text-align: center;
+    color: #3a3d98;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #f5f7ff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.manual-entry-container:hover {
+    background-color: #e0e7ff;
+}
+
+/* Separate form container */
+.add-medicine-form-container {
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Saved Medicines Table Styling */
+.saved-medicines-table {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.saved-medicines-table:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.saved-medicines-table h2 {
+    font-size: 1.8em;
+    color: #00796b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.saved-medicines-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.saved-medicines-table th,
+.saved-medicines-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.saved-medicines-table th {
+    background-color: #00796b;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: 2px solid #004d40;
+}
+
+.saved-medicines-table td {
+    background-color: #e0f2f1;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.saved-medicines-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.saved-medicines-table tbody tr:hover {
+    background-color: #b2dfdb;
+}
+
+.saved-medicines-table tbody tr:nth-child(even) td {
+    background-color: #f0f4f8;
+}
+
+.saved-medicines-table p {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+
+/* Button Styles */
+.saved-medicines-button,
+.show-saved-medicines-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.saved-medicines-button:hover,
+.show-saved-medicines-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Additional Styles for Containers */
+.saved-medicines-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.show-saved-medicines-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* General Styles */
+.session-medicines-table {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f0f4f8;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.session-medicines-table h2 {
+    font-size: 1.5em;
+    color: #3a3d98;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.session-medicines-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.session-medicines-table th,
+.session-medicines-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.session-medicines-table th {
+    background-color: #3a3d98;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.session-medicines-table td {
+    background-color: #f9f9ff;
+    color: #333;
+}
+
+.session-medicines-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.session-medicines-table tbody tr:hover {
+    background-color: #e0e7ff;
+}
+
+.session-medicines-table tbody tr:nth-child(even) td {
+    background-color: #f0f4f8;
+}
+
+.session-medicines-table {
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.session-medicines-table p {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+/* Update Saved Medicines Table Styling */
+.update-saved-medicines-table {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffecb3, #ffe082);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.update-saved-medicines-table:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.update-saved-medicines-table h2 {
+    font-size: 1.8em;
+    color: #e65100;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.update-saved-medicines-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.update-saved-medicines-table th,
+.update-saved-medicines-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.update-saved-medicines-table th {
+    background-color: #ff8f00;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: 2px solid #e65100;
+}
+
+.update-saved-medicines-table td {
+    background-color: #fff3e0;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.update-saved-medicines-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.update-saved-medicines-table tbody tr:hover {
+    background-color: #ffe0b2;
+}
+
+.update-saved-medicines-table tbody tr:nth-child(even) td {
+    background-color: #fff8e1;
+}
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: opacity 0.5s ease;
+}
+input[type="number"] {
+    width: 50px;
+    margin: 0 5px;
+}
+
+select {
+    width: 80px;
+    margin-left: 5px;
+}
+.loading-indicator {
+    font-size: 16px;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}

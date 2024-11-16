@@ -1,0 +1,26 @@
+/* Add to your UploadContainer.css */
+.loading-indicator {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+.detected-medicines {
+    margin-top: 20px;
+}
+
+.detected-medicines h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.detected-medicines ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.detected-medicines li {
+    font-size: 16px;
+    color: #333;
+}
