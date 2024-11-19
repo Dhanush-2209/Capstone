@@ -68,6 +68,7 @@
     font-size: 1em;
 }
 
+
 /* Right half (Manual Entry) */
 .right-half {
     width: 48%;
@@ -353,3 +354,12 @@ select {
     font-size: 14px;
     margin-top: 10px;
 }
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .left-half, .right-half {
+    width: 48%;  /* Adjust as needed */
+  }
+  

@@ -1,190 +1,50 @@
+/* AlarmComponent.css */
 .alarm-component {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
 }
 
 h2 {
-    text-align: center;
-    color: #333;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .alarm-settings-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
 }
 
 .alarm-settings-table th,
 .alarm-settings-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-    vertical-align: middle;
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
 }
 
-.alarm-settings-table th {
-    background-color: #4caf50;
-    color: white;
+button {
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
-.add-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
-.add-button:hover {
-    background-color: #45a049;
-}
-
-.medicine-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 8px 10px;
-    margin: 5px 0;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    color: #555;
-}
-
-.no-medicines {
-    color: #888;
-    font-style: italic;
-}
-.alarm-component {
-    font-family: Arial, sans-serif;
-  }
-  
-  .alarm-settings-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .alarm-settings-table th,
-  .alarm-settings-table td {
-    border: 1px solid #ddd;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .add-button {
-    padding: 10px 15px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-button:hover {
-    background-color: #45a049;
-  }
-  
-  .auto-off-item,
-  .alarm-item {
-    margin: 5px 0;
-    padding: 5px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .medicine-list-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    text-align: center;
-  }
-  
-  .medicine-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .medicine-item {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .medicine-item:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .close-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .close-button:hover {
-    background-color: #d32f2f;
-  }
-  /* Add smooth transition for the modal */
 .medicine-list-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-    background-color: rgb(45, 31, 31);
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 100%;
-}
-
-.medicine-list-modal ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.medicine-list-modal li {
-    margin: 10px 0;
-    cursor: pointer;
-}
-
-.medicine-list-modal button {
-    margin-top: 10px;
-}
-.selected {
-    background-color: #ddd;  /* Light gray background for selected item */
-    font-weight: bold;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }

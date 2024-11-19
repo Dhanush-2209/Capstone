@@ -58,8 +58,7 @@ const Login = () => {
             localStorage.setItem('userId', response.data.user.userId);
             localStorage.setItem('userName', response.data.user.name);
             localStorage.setItem('userType', response.data.user.userType); // Store userType
-            // After a successful login
-localStorage.setItem('authToken', response.data.token);
+            
 
             // Navigate based on user type
             if (response.data.user.userType === 'USER') {

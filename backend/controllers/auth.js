@@ -3,7 +3,6 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Medicine = require('../models/medicine');
-const Alarm = require('../models/Alarm');
 
 let tokenBlacklist = [];
 
@@ -23,6 +22,16 @@ const signup = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password.trim(), 10);
 
+        const generateUniqueUserId = () => {
+            const randomNumber = Math.floor(1000 + Math.random() * 9000); // Generates a 4-digit random number
+            const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const randomChar = randomChars[Math.floor(Math.random() * randomChars.length)]; // Random uppercase letter
+            const secondRandomChar = randomChars[Math.floor(Math.random() * randomChars.length)]; // Another random uppercase letter
+        
+            return `${randomNumber}${randomChar}${secondRandomChar}`;
+        };
+        
+        
         const newUser = new User({
             name,
             email,
@@ -127,14 +136,6 @@ const addMedicine = async (req, res) => {
     try {
         const medicine = new Medicine({ ...req.body, userId: req.userId });
         await medicine.save();
-        // Create a corresponding alarm with type 'off'
-        const newAlarm = new Alarm({
-            name: savedMedicine.name,
-            type: 'off',
-            session: savedMedicine.session || null,
-            time: savedMedicine.time || null,
-        });
-        await newAlarm.save();
         res.status(201).json(medicine);
     } catch (error) {
         res.status(500).json({ error: 'Failed to add medicine' });

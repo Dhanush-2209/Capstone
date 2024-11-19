@@ -537,8 +537,8 @@ const sessionMedicines = sortMedicinesBySession(medicines, currentSession); // S
                     currentSession={currentSession} 
                     calculateRemainingDays={calculateRemainingDays} 
                 />
-                <AlarmComponent savedMedicines={savedMedicines} />
-
+                 {/* Adding AlarmComponent here, between the table and the button */}
+                <AlarmComponent />
                 <button
                     onClick={() => setShowSavedMedicines((prev) => !prev)}
                     className="show-saved-medicines-button"

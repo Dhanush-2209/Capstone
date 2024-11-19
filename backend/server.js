@@ -4,7 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const medicineRoutes = require('./routes/medicine'); // Medicine route
-const alarmRoutes = require('./routes/alarmRoutes');
+const adminRoutes = require('./routes/admin'); // Import admin routes
 
 const app = express();
 
@@ -20,7 +20,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/medicines', medicineRoutes); // Protect with auth middleware
 app.use('/api/auth/allMedicines', medicineRoutes);
 app.use('/api/auth', medicineRoutes);
-app.use('/api/alarms', alarmRoutes);
+app.use('/api/admin', adminRoutes);
+
 
 // Start the server
 const PORT = process.env.PORT || 5000;

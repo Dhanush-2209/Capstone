@@ -2,7 +2,6 @@
 const express = require('express');
 const Medicine = require('../models/medicine');
 const authMiddleware = require('../middleware/authMiddleware'); // Ensure authentication
-const { getMedicines } = require('../controllers/auth');
 const router = express.Router();
 
 // GET all medicines for the logged-in user
@@ -15,9 +14,6 @@ router.get('/', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Error fetching medicines' });
     }
 });
-
-// Get medicines for the logged-in user
-router.get('/', authMiddleware, getMedicines);
 
 // POST a new medicine
 router.post('/', authMiddleware, async (req, res) => {

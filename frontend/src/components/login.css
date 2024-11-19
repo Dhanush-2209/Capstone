@@ -127,3 +127,18 @@ p {
 .user-type-container .indicator.ADMIN {
     left: 50%; /* Indicator under ADMIN */
 }
+body {
+    background: linear-gradient(to bottom, #e6f2fc, #d0e7f9);
+    /* Adjust these colors to match the gradient in your image */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.login-container,
+.monitoring-container {
+    background: white; /* Ensure your containers still stand out */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+}

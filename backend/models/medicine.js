@@ -11,6 +11,6 @@ const medicineSchema = new mongoose.Schema({
 });
 
 // Create the medicine model
-const Medicine = mongoose.model('Medicine', medicineSchema);
+const Medicine = mongoose.models.Medicine || mongoose.model('Medicine', medicineSchema);
 
 module.exports = Medicine;

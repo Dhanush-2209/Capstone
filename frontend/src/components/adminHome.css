@@ -1,0 +1,276 @@
+/* Admin Home Styles */
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .header-left {
+    flex: 1;
+  }
+  
+  .date-time {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .user-info {
+    text-align: right;
+  }
+  
+  .user-name-label,
+  .user-id-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .logout-button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .logout-button:hover {
+    background-color: #45a049;
+  }
+  
+  .medicines-table-container {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .medicines-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .medicines-table th, .medicines-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .medicines-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .add-user-container {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-user-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .add-user-button:hover {
+    background-color: #45a049;
+  }
+  
+  .add-user-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-field {
+    margin-bottom: 15px;
+  }
+  
+  .form-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-field input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .user-list-container {
+    margin-top: 30px;
+  }
+  
+  .user-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .user-item {
+    width: calc(20% - 16px); /* 5 columns per row */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-id {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .username {
+    font-size: 14px;
+    color: #777;
+  }
+  .selected-user-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-container,
+.add-medicine-container {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-container input,
+.add-medicine-container input,
+.add-medicine-container button {
+  padding: 10px;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.add-user-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-user-button:hover {
+  background-color: #45a049;
+}
+
+.submit-button {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.submit-button:hover {
+  background-color: #007B9E;
+}
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .edit-button {
+    background-color: #ffa500;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .edit-button:hover {
+    background-color: #cc8400;
+  }
+  
+  .delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .delete-button:hover {
+    background-color: #cc0000;
+  }
+  .dashboard-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .upload-box,
+  .add-medicine-box {
+    width: 48%;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .saved-medicines table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .saved-medicines th,
+  .saved-medicines td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .saved-medicines th {
+    background: #f4f4f4;
+  }
+  
