@@ -1,56 +1,40 @@
 const express = require('express');
-const User = require('../models/User');
-const Medicine = require('../models/medicine');
-const isAdmin = require('../middleware/adminMiddleware'); // Admin check middleware
+const mongoose = require('mongoose');
 const router = express.Router();
+const { checkEmailExists, addUser, getAllUsers} = require('../controllers/adminController');
+const adminAuthMiddleware = require('../middleware/adminAuthMiddleware'); // Import the middleware
+const User = require('../models/User'); // Import your User model
 
-// Get all users (Admin Only)
-router.get('/users', isAdmin, async (req, res) => {
-    try {
-        const users = await User.find();
-        res.status(200).json(users);
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to fetch users' });
-    }
-});
 
-// Get a specific user's medicines (Admin Only)
-router.get('/user/:userId/medicines', isAdmin, async (req, res) => {
+// Route for checking if email exists
+router.get('/email-check', checkEmailExists);
+router.get('/users', adminAuthMiddleware, getAllUsers);
+// Route for adding a user (admin functionality)
+router.post('/add-user', adminAuthMiddleware, addUser);
+
+router.delete('/delete-user/:userId', async (req, res) => {
     const { userId } = req.params;
-
+    
+    // If you're using a string ID instead of ObjectId, skip the ObjectId validation
+    // But ensure it exists in your database
+    const user = await User.findOne({ userId });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
     try {
-        const medicines = await Medicine.find({ userId });
-        res.status(200).json(medicines);
+      const deletedUser = await User.findOneAndDelete({ userId });
+      if (!deletedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json({ message: 'User deleted successfully' });
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching medicines for user' });
+      console.error('Error deleting user:', error);
+      res.status(500).json({ message: 'Server error, please try again later' });
     }
-});
-
-// Add medicine to a user (Admin Only)
-router.post('/user/:userId/medicines', isAdmin, async (req, res) => {
-    const { userId } = req.params;
-    const { name, session, time, days } = req.body;
-
-    if (!name || !session || !time || !days) {
-        return res.status(400).json({ message: 'All fields are required' });
-    }
-
-    try {
-        const newMedicine = new Medicine({
-            name,
-            session,
-            time,
-            days,
-            userId,
-            addedAt: new Date(),
-        });
-
-        const savedMedicine = await newMedicine.save();
-        res.status(201).json(savedMedicine);
-    } catch (error) {
-        console.error('Error adding medicine:', error);
-        res.status(500).json({ message: 'Failed to add medicine' });
-    }
-});
+  });
+  
+  
+  
 
 module.exports = router;

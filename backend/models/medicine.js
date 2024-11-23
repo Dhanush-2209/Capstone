@@ -7,7 +7,11 @@ const medicineSchema = new mongoose.Schema({
     time: { type: String, required: true },
     days: { type: Number, required: true },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    status: { type: String, enum: ['autoOff', 'autoAlarm'], default: 'autoOff' }, // Medicine state
     addedAt: { type: Date, default: Date.now }, // New field to store the date and time of addition
+    state: { type: String, default: 'autooff' },
+    manualAlarmTime: { type: Date, default: null },
+
 });
 
 // Create the medicine model

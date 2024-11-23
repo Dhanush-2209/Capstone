@@ -19,6 +19,7 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
+    
 
     // Handle login form input changes
     const handleLoginChange = (e) => {
@@ -58,7 +59,6 @@ const Login = () => {
             localStorage.setItem('userId', response.data.user.userId);
             localStorage.setItem('userName', response.data.user.name);
             localStorage.setItem('userType', response.data.user.userType); // Store userType
-            
 
             // Navigate based on user type
             if (response.data.user.userType === 'USER') {

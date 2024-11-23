@@ -1,5 +1,7 @@
 // routes/medicine.js
 const express = require('express');
+const moment = require('moment-timezone');
+const mongoose = require('mongoose');
 const Medicine = require('../models/medicine');
 const authMiddleware = require('../middleware/authMiddleware'); // Ensure authentication
 const router = express.Router();
@@ -96,5 +98,108 @@ router.get('/check', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Error checking medicine' });
     }
 });
+// PUT - Move a medicine to "auto_alarm" state
+router.put('/move-to-auto-alarm/:id', authMiddleware, async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Fetch the existing medicine by ID
+        const medicine = await Medicine.findById(id);
+
+        if (!medicine) {
+            return res.status(404).json({ message: 'Medicine not found' });
+        }
+
+        // Ensure that the taking time and total days are retained
+        const takingTime = medicine.time;  // Taking time stored in the database
+        const totalDays = medicine.days;  // Total days stored in the database
+
+        // Now update the medicine state to "auto_alarm"
+        medicine.state = 'auto_alarm';
+
+        // Optionally log the details (for debugging)
+        console.log(`Medicine moved to auto_alarm. Time: ${takingTime}, Total Days: ${totalDays}`);
+
+        // Save the updated medicine in the database
+        const updatedMedicine = await medicine.save();
+
+        // Return the updated medicine
+        return res.status(200).json({
+            message: 'Medicine moved to auto_alarm',
+            updatedMedicine,
+        });
+    } catch (error) {
+        console.error('Error moving medicine to auto_alarm:', error.message);
+        return res.status(500).json({ message: 'Error updating medicine state' });
+    }
+});
+
+
+// PUT - Move a medicine to "manual" state and set the manual alarm time
+router.put('/move-to-manual-alarm/:id', authMiddleware, async (req, res) => {
+    const { id } = req.params;
+    const { manualAlarmTime } = req.body;
+
+    if (!manualAlarmTime) {
+        return res.status(400).json({ message: 'Manual alarm time is required.' });
+    }
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid medicine ID.' });
+        }
+
+        // Use the manualAlarmTime as is without additional formatting
+        const medicine = await Medicine.findById(id);
+        if (!medicine) {
+            return res.status(404).json({ message: 'Medicine not found.' });
+        }
+
+        if (medicine.state === 'manual') {
+            return res.status(400).json({
+                message: 'This medicine is already in the manual alarm state.',
+            });
+        }
+
+        const previousState = medicine.state;
+        medicine.state = 'manual';
+        medicine.manualAlarmTime = manualAlarmTime; // Save the received time as is
+        medicine.previousState = previousState;
+
+        const updatedMedicine = await medicine.save();
+
+        res.status(200).json({
+            message: 'Medicine moved to manual state with alarm time successfully.',
+            updatedMedicine,
+        });
+    } catch (error) {
+        console.error('Error updating medicine state:', error.message);
+        res.status(500).json({ message: 'An error occurred while updating the medicine state.' });
+    }
+});
+
+
+
+
+router.put('/move-to-auto-off/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const updatedMedicine = await Medicine.findByIdAndUpdate(
+            id,
+            { state: 'autooff' },
+            { new: true }
+        );
+        if (!updatedMedicine) {
+            return res.status(404).json({ message: 'Medicine not found' });
+        }
+        res.status(200).json({ updatedMedicine });
+    } catch (error) {
+        console.error('Error moving medicine to autooff:', error.message);
+        res.status(500).json({ error: 'Failed to update medicine state' });
+    }
+});
+
+
+
 
 module.exports = router;

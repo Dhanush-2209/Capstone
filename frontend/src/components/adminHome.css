@@ -273,4 +273,10 @@
   .saved-medicines th {
     background: #f4f4f4;
   }
+  .success-message {
+    color: green;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
   
