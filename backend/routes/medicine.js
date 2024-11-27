@@ -1,4 +1,3 @@
-// routes/medicine.js
 const express = require('express');
 const moment = require('moment-timezone');
 const mongoose = require('mongoose');
@@ -26,13 +25,20 @@ router.post('/', authMiddleware, async (req, res) => {
     }
 
     try {
+        // Calculate the remaining date and time
+        const currentDateTime = moment();  // Current date and time
+        const takingTime = moment(time, 'hh:mm A');  // Taking time parsed into moment object
+        const remainingDateTime = takingTime.add(days, 'days');  // Add total days to the taking time
+
+        // Create new medicine document with the remainingDateTime
         const newMedicine = new Medicine({
             name,
             session,
             time,
             days,
-            userId: req.user._id, // Ensure this is an ObjectId type
-            addedAt: new Date()
+            userId: req.user._id,
+            addedAt: new Date(),
+            remainingDateTime: remainingDateTime.toDate()  // Store calculated remaining date and time
         });
 
         const savedMedicine = await newMedicine.save();
@@ -42,6 +48,35 @@ router.post('/', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Error adding medicine' });
     }
 });
+
+// DELETE expired medicines
+// DELETE expired medicines
+router.delete('/expire', authMiddleware, async (req, res) => {
+    try {
+        // Get the current date and time
+        const currentDateTime = moment();
+
+        // Find medicines with expired remainingDateTime
+        const expiredMedicines = await Medicine.find({
+            remainingDateTime: { $lte: currentDateTime.toDate() }  // Check if remainingDateTime has passed
+        });
+
+        if (expiredMedicines.length === 0) {
+            return res.status(404).json({ message: 'No expired medicines found' });
+        }
+
+        // Delete expired medicines (removes all expired medicines, not just auto_alarm state)
+        await Medicine.deleteMany({
+            remainingDateTime: { $lte: currentDateTime.toDate() }
+        });
+
+        res.status(200).json({ message: 'Expired medicines deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting expired medicines:', error);
+        res.status(500).json({ message: 'Error deleting expired medicines' });
+    }
+});
+
 
 // DELETE medicine by ID
 router.delete('/medicines/:id', authMiddleware, async (req, res) => {
@@ -98,6 +133,7 @@ router.get('/check', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Error checking medicine' });
     }
 });
+
 // PUT - Move a medicine to "auto_alarm" state
 router.put('/move-to-auto-alarm/:id', authMiddleware, async (req, res) => {
     const { id } = req.params;
@@ -133,7 +169,6 @@ router.put('/move-to-auto-alarm/:id', authMiddleware, async (req, res) => {
         return res.status(500).json({ message: 'Error updating medicine state' });
     }
 });
-
 
 // PUT - Move a medicine to "manual" state and set the manual alarm time
 router.put('/move-to-manual-alarm/:id', authMiddleware, async (req, res) => {
@@ -178,9 +213,6 @@ router.put('/move-to-manual-alarm/:id', authMiddleware, async (req, res) => {
     }
 });
 
-
-
-
 router.put('/move-to-auto-off/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -199,7 +231,31 @@ router.put('/move-to-auto-off/:id', async (req, res) => {
     }
 });
 
+// PUT - Restore the previous state for a medicine
+// PUT - Restore previous state of a medicine
+router.put('/restore-previous-state/:id', authMiddleware, async (req, res) => {
+    const { id } = req.params;
 
+    try {
+        const medicine = await Medicine.findById(id);
+        if (!medicine) {
+            return res.status(404).json({ message: 'Medicine not found' });
+        }
 
+        if (!medicine.previousState) {
+            return res.status(400).json({ message: 'No previous state to restore' });
+        }
+
+        medicine.state = medicine.previousState;
+        medicine.previousState = null;
+
+        await medicine.save();
+
+        res.status(200).json({ message: 'Previous state restored', medicine });
+    } catch (error) {
+        console.error('Error restoring previous state:', error);
+        res.status(500).json({ message: 'Error restoring previous state' });
+    }
+});
 
 module.exports = router;

@@ -10,6 +10,7 @@ const medicineSchema = new mongoose.Schema({
     status: { type: String, enum: ['autoOff', 'autoAlarm'], default: 'autoOff' }, // Medicine state
     addedAt: { type: Date, default: Date.now }, // New field to store the date and time of addition
     state: { type: String, default: 'autooff' },
+    previousState: { type: String, default: null }, // Add this field
     manualAlarmTime: { type: Date, default: null },
 
 });

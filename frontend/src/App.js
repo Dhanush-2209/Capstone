@@ -7,10 +7,15 @@ import AdminDashboard from './components/adminHome';
 import PrivateRoute from './components/privateRoute'; 
 import About from './components/about';
 import LandingPage from './components/LandingPage'; // Import the LandingPage component
+import NotificationComponent from './components/services/NotificationComponent'; // Import the NotificationComponent
+import AutoAlarmNotification from './components/services/AutoAlarmNotificationComponent'; // Import the AutoAlarmNotificationComponent
 
 function App() {
   return (
     <Router>
+      {/* Render NotificationComponent globally */}
+      <NotificationComponent /> {/* Render NotificationComponent here */}
+      <AutoAlarmNotification />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<LandingPage />} /> {/* Change root route to LandingPage */}
