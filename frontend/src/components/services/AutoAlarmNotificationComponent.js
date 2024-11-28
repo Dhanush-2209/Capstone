@@ -6,29 +6,66 @@ const socket = io('http://localhost:5000'); // Your backend URL
 const AutoAlarmNotification = () => {
     const [showAlarm, setShowAlarm] = useState(false);
     const [alarmData, setAlarmData] = useState({});
-    const alarmSound = new Audio('/alarm-sound.mp3'); // Use public path
+    const alarmSound = new Audio('/alarm-sound.mp3'); // Ensure this is in the public folder
+    const [audioAllowed, setAudioAllowed] = useState(false); // Track if audio can be played
 
     useEffect(() => {
+        // Request permission to play sound when notification is clicked
+        const handleNotificationClick = () => {
+            setAudioAllowed(true);  // Allow audio playback after clicking the notification
+            playAlarmSound(); // Play the sound
+            setShowAlarm(true); // Show the alarm overlay
+        };
+
         socket.on('triggerAutoAlarm', (data) => {
             setAlarmData(data);
-            setShowAlarm(true);
-            alarmSound.play(); // Play the alarm sound
+            // Display the browser notification when the alarm triggers
+            if (Notification.permission === 'granted') {
+                const notification = new Notification('Alarm Triggered!', {
+                    body: `It's time to take ${data.name} `,
+                    icon: '/alarm-icon.png',  // Optional: Add an icon to the notification
+                });
+
+                // When the notification is clicked, trigger the alarm overlay
+                notification.onclick = handleNotificationClick;
+            } else {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        const notification = new Notification('Alarm Triggered!', {
+                            body: `It's time to take ${data.name} `,
+                            icon: '/alarm-icon.png', // Optional: Add an icon to the notification
+                        });
+
+                        // When the notification is clicked, trigger the alarm overlay
+                        notification.onclick = handleNotificationClick;
+                    }
+                });
+            }
         });
 
         return () => {
             socket.off('triggerAutoAlarm');
         };
-    }, [alarmSound]);
+    }, []);
 
+    // Function to play the alarm sound with AudioContext only after user gesture
+    const playAlarmSound = () => {
+        if (audioAllowed) {
+            alarmSound.play().catch(error => {
+                console.error('Error playing sound:', error); // Catch errors if the sound is blocked
+            });
+        }
+    };
+
+    // Function to close the alarm notification and stop the sound
     const closeAlarm = () => {
         setShowAlarm(false);
-        alarmSound.pause(); // Stop the alarm sound
-        alarmSound.currentTime = 0; // Reset the sound
+        alarmSound.pause();  // Stop the alarm sound
+        alarmSound.currentTime = 0; // Reset the sound to the start
     };
 
     return (
         <div>
-            
             {showAlarm && (
                 <div
                     style={{
@@ -48,8 +85,7 @@ const AutoAlarmNotification = () => {
                 >
                     <h2>🔔 Alarm Triggered!</h2>
                     <p>
-                        It's time to take <strong>{alarmData.name}</strong> at{' '}
-                        {new Date(alarmData.time).toLocaleTimeString()}!
+                        It's time to take <strong>{alarmData.name}</strong> 
                     </p>
                     <button
                         style={{

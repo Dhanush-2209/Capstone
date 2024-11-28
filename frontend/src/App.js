@@ -1,4 +1,4 @@
-// src/App.js
+import React, { useEffect } from 'react'; // Make sure React is imported
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/login'; 
 import Signup from './components/signup'; 
@@ -11,14 +11,24 @@ import NotificationComponent from './components/services/NotificationComponent';
 import AutoAlarmNotification from './components/services/AutoAlarmNotificationComponent'; // Import the AutoAlarmNotificationComponent
 
 function App() {
+  useEffect(() => {
+    if (Notification.permission !== 'granted') {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted');
+        }
+      });
+    }
+  }, []);
+
   return (
     <Router>
       {/* Render NotificationComponent globally */}
-      <NotificationComponent /> {/* Render NotificationComponent here */}
+      <NotificationComponent />
       <AutoAlarmNotification />
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<LandingPage />} /> {/* Change root route to LandingPage */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/about" element={<About />} />
